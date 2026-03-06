@@ -151,5 +151,37 @@ Each client calculates a **Pressure Score**:
 Pressure Score =
 (Time Elapsed % × 0.5) + (Unfinished Tasks % × 0.5)
 
-The host ca
+The host can update timer values which are broadcast to all users.
+
+---
+
+# 9. Admin Dashboard
+
+### What it does
+
+* Monitor server uptime, CPU usage, memory usage.
+* Track active rooms and users.
+* Force delete rooms or inspect metadata.
+
+### How it works
+
+* **JWT authentication** protects admin routes.
+* Admin logs in through `/api/admin/login`.
+* Protected APIs like `/api/stats` require a valid token.
+* Server metrics are gathered using Node.js `os` and `process` modules.
+
+---
+
+# 🧠 Summary
+
+SYNAPSE combines:
+
+* Real-time collaboration
+* Live coding environments
+* Secure encrypted file sharing
+* Task management
+* Peer-to-peer file relay
+* AI-assisted development tools
+
+All inside a single collaborative workspace.
 
