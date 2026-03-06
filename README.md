@@ -11,4 +11,6 @@ This contains everything you need to run your app locally.
 2. Run the app:
    `npm start server`
 
+## Documentation
+- [Features](FEATURES.md)
    
