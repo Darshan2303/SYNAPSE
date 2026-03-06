@@ -205,6 +205,8 @@ Click **Share Live Directory** and select a folder.
 
 Other users can open files directly from your computer.
 
+[don't share directories with huge structure might end up crashing the browser since there is no upper limit for uploads]
+
 ### Stop Sharing
 
 Click **Clear All Shared**.
