@@ -37,7 +37,7 @@ Before running the application, install:
 
 1. Download or clone this repository.
 2. Ensure **Node.js is installed**.
-3. Double-click:[start.bat](start.bat)
+3. Double-click: [start.bat](start.bat) file 
 
   
 The script will automatically:
