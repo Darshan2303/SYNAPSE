@@ -350,7 +350,7 @@ Solution:
 
 ### File Upload Failed
 
-Large files (>100MB) may fail on slow connections.
+Large files may take time to upload and download on slow connections.
 
 Possible solutions:
 
