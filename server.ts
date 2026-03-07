@@ -1185,7 +1185,7 @@ async function startServer() {
     return Array.from(new Set(addresses));
   };
 
-  const PORT = parseInt(process.env.PORT || '3000', 10);
+  const PORT = parseInt(process.env.PORT || '4000', 10);
   server.listen(PORT, '0.0.0.0', () => {
     const ips = getLocalIpAddresses();
     console.log(`\n✅ SYNAPSE SERVER RUNNING`);
