@@ -156,3 +156,7 @@ Synapse aims to provide:
 ## ⭐ Support
 
 If you find this project useful, consider giving the repository a **star ⭐**.
+known issues - code editor error in low network
+               mobile UI is flikering
+will be solved shortly
+
