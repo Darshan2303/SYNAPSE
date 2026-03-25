@@ -44,7 +44,6 @@ export const SpotlightNavbar: React.FC<SpotlightNavbarProps> = ({ currentView, o
     { id: 'snippets', icon: Code, label: 'Vault' },
     { id: 'files', icon: FileText, label: 'Data' },
     { id: 'directory', icon: Folder, label: 'Dirs' },
-   
     { id: 'code-editor', icon: Code, label: 'Editor' },
     { id: 'settings', icon: Settings, label: 'Sys' },
     { id: 'admin', icon: Shield, label: 'Admin' },

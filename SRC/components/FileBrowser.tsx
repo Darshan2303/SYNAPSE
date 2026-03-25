@@ -200,7 +200,7 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({ files = [], sections =
           const blob = await response.blob();
           
           let downloadBlob = blob;
-          if (roomPassword) {
+          if (roomPassword && encryptionEnabled) {
               try {
                   const buffer = await blob.arrayBuffer();
                   const decryptedBuffer = await decryptFile(buffer, roomPassword);
@@ -289,7 +289,23 @@ export const FileBrowser: React.FC<FileBrowserProps> = ({ files = [], sections =
       const filesWithContent = await Promise.all(uncategorizedFiles.map(async (file) => {
         try {
             const response = await fetch(`${serverUrl}/uploads/${roomName}/${file.name}?password=${encodeURIComponent(roomPassword || '')}`);
-            const text = await response.text();
+            let text = '';
+            if (roomPassword && encryptionEnabled) {
+                try {
+                    const buffer = await response.arrayBuffer();
+                    try {
+                        const decryptedBuffer = await decryptFile(buffer, roomPassword);
+                        text = new TextDecoder().decode(decryptedBuffer);
+                    } catch (e) {
+                        console.error("Decryption failed for analysis", e);
+                        text = new TextDecoder().decode(buffer);
+                    }
+                } catch (e) {
+                    console.error("Failed to read response buffer", e);
+                }
+            } else {
+                text = await response.text();
+            }
             // Truncate content to avoid token limits (approx 2k tokens)
             const content = text.slice(0, 8000);
             return { ...file, content };
