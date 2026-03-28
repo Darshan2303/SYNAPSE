@@ -11,12 +11,13 @@ echo "SYNAPSE Launcher"
 echo "==============================="
 
 # Check if Node is installed
-if ! command -v node &> /dev/null; then
-    echo "Node.js is not installed."
-    echo "Install from https://nodejs.org"
+
+
+# Check if npm is installed
+if ! command -v npm &> /dev/null; then
+    echo "npm is not installed."
+    echo "Please ensure npm is installed alongside Node.js."
     echo ""
-    echo "==============================="
-    echo "Process finished"
     echo "==============================="
     read -p "Press Enter to exit..."
     exit 1
@@ -24,6 +25,9 @@ fi
 
 echo "Node detected:"
 node -v
+
+# Catch Ctrl+C so the window doesn't close instantly when stopping the server
+trap 'echo ""; echo "Server stopped by user."' INT
 
 # --- THE FIX: Cross-platform npm runner ---
 # Prevents Windows/Git Bash from exiting instantly
@@ -42,6 +46,7 @@ run_npm install --no-audit --no-fund
 
 echo ""
 echo "Starting server..."
+# Note: If 'server' is a custom script in package.json, this might need to be 'run_npm run server'
 run_npm start server
 
 echo ""
