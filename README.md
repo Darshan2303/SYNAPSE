@@ -1,3 +1,7 @@
+now works with mDNS 
+
+
+u can open synapse.local:4000 and access the tool 
 <div align="center">
 
 # 🚀 SYNAPSE
