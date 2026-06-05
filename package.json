@@ -18,6 +18,7 @@
     "@shadergradient/react": "^2.4.20",
     "archiver": "^7.0.1",
     "bcrypt": "^6.0.0",
+    "bonjour-service": "^1.4.0",
     "camera-controls": "^2.9.2",
     "clsx": "^2.1.1",
     "cookie-parser": "^1.4.7",

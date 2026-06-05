@@ -8,6 +8,7 @@ import path from 'path';
 import cors from 'cors';
 import os from 'os';
 import fs from 'fs';
+import Bonjour from 'bonjour-service';
 import multer, { FileFilterCallback } from 'multer';
 import { fileURLToPath } from 'url';
 import session, { Session, SessionData } from 'express-session';
@@ -1424,6 +1425,12 @@ async function startServer() {
     const ips = getLocalIpAddresses();
     console.log(`\n✅ SYNAPSE SERVER RUNNING`);
     ips.forEach(ip => console.log(`👉 http://${ip}:${PORT}`));
+    
+    // Broadcast mDNS for synapse.local
+    const bonjour = new Bonjour();
+    bonjour.publish({ name: 'synapse', type: 'http', port: PORT, host: 'synapse.local' });
+    console.log(`👉 http://synapse.local:${PORT}`);
+    
     console.log(`\n`);
   });
 }
