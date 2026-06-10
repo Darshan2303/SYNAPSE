@@ -81,6 +81,12 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
   
+  // Disable timeouts for large file transfers over local network
+  server.setTimeout(0);
+  server.requestTimeout = 0;
+  server.headersTimeout = 0;
+  server.keepAliveTimeout = 0;
+
   // Setup WebSocket Server for Yjs
   const wss = new WebSocketServer({ noServer: true });
   const ydocs = new Map<string, Y.Doc>();
@@ -1028,7 +1034,14 @@ async function startServer() {
       const filename = req.headers['x-filename'] || 'download';
       
       pending.res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-      pending.res.setHeader('Content-Type', 'application/octet-stream');
+      pending.res.setHeader('Content-Type', req.headers['content-type'] || 'application/octet-stream');
+      if (req.headers['content-length']) {
+          pending.res.setHeader('Content-Length', req.headers['content-length']);
+      }
+
+      // Explicitly remove timeouts from these sockets
+      req.setTimeout(0);
+      pending.res.setTimeout(0);
 
       req.pipe(pending.res);
 
