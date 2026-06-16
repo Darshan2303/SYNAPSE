@@ -23,7 +23,7 @@
 
 Synapse is a **self-hosted, LAN-first developer collaboration platform** that combines everything your team needs into one unified workspace — without the overhead of cloud subscriptions, account creation, or internet dependency.
 
-Designed for **hackathons**, **team sprints**, and **rapid prototyping**, Synapse runs entirely on your local network and is accessible from any device via `synapse.local:4000`.
+Designed for **hackathons**, **team sprints**, and **rapid prototyping**, Synapse runs entirely on your local network and is accessible from any device [except mobiles ,mobile needs to be connected via ip address] via `synapse.local:4000`.
 
 > No cloud. No accounts. No latency. Just your team and your code.
 
