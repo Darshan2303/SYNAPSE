@@ -1,5 +1,8 @@
-now works with mDNS 
+Added a AutoInstaller
+use the installer for downloading or updragind the tool and also if u want to uninstall it will create a backup of the database for future installations
 
+
+now works with mDNS 
 
 u can open synapse.local:4000 and access the tool 
 <div align="center">
