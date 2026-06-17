@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { User } from '@/types';
 import { Settings as SettingsIcon, Users, Shield, Calendar, Save, Power, Activity } from 'lucide-react';
+import { IpLinkWithQR } from './IpLinkWithQR';
 
 interface SettingsProps {
   currentUser: User | null;
@@ -378,7 +379,7 @@ export const Settings: React.FC<SettingsProps> = ({
                   {localIpAddresses.length > 0 ? (
                       localIpAddresses.map((ip, index) => (
                         <div key={index} style={{ fontFamily: 'var(--st-mono)', fontSize: '0.65rem', color: 'var(--st-t3)', letterSpacing: '0.05em' }}>
-                            http://{ip}:{window.location.port}
+                            <IpLinkWithQR ip={ip} port={window.location.port} />
                         </div>
                       ))
                   ) : (

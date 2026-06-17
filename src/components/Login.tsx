@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ServerStats } from '@/components/ServerStats';
+import { SystemDocs } from '@/components/SystemDocs';
 
 interface LoginProps {
   onJoin: (roomName: string, key: string, isCreating: boolean, username: string) => void;
@@ -346,7 +347,7 @@ export const Login: React.FC<LoginProps> = ({ onJoin, error }) => {
   const [roomName, setRoomName] = useState('');
   const [username, setUsername] = useState('');
   const [accessKey, setAccessKey] = useState('');
-  const [view, setView] = useState<'login' | 'admin'>('login');
+  const [view, setView] = useState<'login' | 'admin' | 'docs'>('login');
   const [isSwitching, setIsSwitching] = useState(false);
   
   // Password strength state
@@ -417,6 +418,20 @@ export const Login: React.FC<LoginProps> = ({ onJoin, error }) => {
         <div className="grain"></div>
         <div className="relative z-20 w-full h-full p-8">
            <ServerStats onBack={() => setView('login')} />
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'docs') {
+    return (
+      <div className="login-scene">
+        <SpaceCanvas />
+        <WaveCanvas />
+        <div className="vignette"></div>
+        <div className="grain"></div>
+        <div className="relative z-20 w-full h-full p-8 flex items-center justify-center">
+           <SystemDocs onBack={() => setView('login')} />
         </div>
       </div>
     );
@@ -548,6 +563,13 @@ export const Login: React.FC<LoginProps> = ({ onJoin, error }) => {
             </div>
           </div>
         </div>
+      </div>
+      
+      <div 
+        className="fixed bottom-4 left-4 text-xs font-mono text-white/40 tracking-wider z-50 cursor-pointer select-none hover:text-white/80 transition-colors"
+        onClick={() => setView('docs')}
+      >
+        Version-1.0
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Icons } from '@/components/Icons';
 import { ServerStatsData } from '@/types';
 import { AdminLogin } from '@/components/AdminLogin';
+import { IpLinkWithQR } from './IpLinkWithQR';
 
 interface ServerStatsProps {
   onBack: () => void;
@@ -503,7 +504,9 @@ export const ServerStats: React.FC<ServerStatsProps> = ({ onBack }) => {
                 <div className="dg-l">Host IPs</div>
                 <div className="ip-list">
                   {localIps.length > 0 ? localIps.map((ip, i) => (
-                      <div key={i} className="ip-row"><div className="ip-pip"></div>{ip}</div>
+                      <div key={i} className="ip-row w-full flex-col items-stretch p-0 bg-transparent border-0">
+                          <IpLinkWithQR ip={ip} port={window.location.port} className="w-full" />
+                      </div>
                   )) : (
                       <div className="ip-row"><div className="ip-pip"></div>Scanning...</div>
                   )}

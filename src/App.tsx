@@ -25,7 +25,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import ChatBox from '@/components/ChatBox';
 import { Whiteboard } from '@/components/Whiteboard';
 import { useGemini } from '@/hooks/useGemini';
-
+import { IpLinkWithQR } from '@/components/IpLinkWithQR';
 
 const App: React.FC = () => {
   const isMobile = useIsMobile();
@@ -533,6 +533,14 @@ const App: React.FC = () => {
                                 </motion.div>
                             )}
                             {view === 'files' && (
+                                <motion.div
+                                    key="files"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="h-full w-full"
+                                >
                                     <FileBrowser 
                                         files={files}
                                         sections={fileSections}
@@ -553,17 +561,6 @@ const App: React.FC = () => {
                                         roomPassword={accessKey || ''}
                                         encryptionEnabled={encryptionEnabled}
                                     />
-                            )}
-                            {view === 'boilerplate' && (
-                                <motion.div
-                                    key="boilerplate"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="h-full w-full"
-                                >
-                                    <BoilerplateGenerator />
                                 </motion.div>
                             )}
                             {view === 'directory' && (
@@ -733,15 +730,7 @@ const App: React.FC = () => {
                                                 <span className="text-hack-muted mb-1">HOST IPs</span>
                                                 {localIpAddresses.length > 0 ? (
                                                     localIpAddresses.map((ip, index) => (
-                                                        <a 
-                                                            key={index} 
-                                                            href={`http://${ip}:${window.location.port}`}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="text-hack-text bg-hack-bg p-2 rounded border border-hack-border hover:border-hack-primary transition-colors block mb-1 last:mb-0"
-                                                        >
-                                                            http://{ip}:{window.location.port}
-                                                        </a>
+                                                        <IpLinkWithQR key={index} ip={ip} port={window.location.port} />
                                                     ))
                                                 ) : (
                                                     <span className="text-hack-text bg-hack-bg p-2 rounded border border-hack-border">N/A</span>
@@ -779,15 +768,7 @@ const App: React.FC = () => {
                                 <span className="text-hack-muted mb-1">HOST IPs</span>
                                 {localIpAddresses.length > 0 ? (
                                     localIpAddresses.map((ip, index) => (
-                                        <a 
-                                            key={index} 
-                                            href={`http://${ip}:${window.location.port}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-hack-text bg-hack-bg p-2 rounded border border-hack-border hover:border-hack-primary transition-colors block mb-1 last:mb-0"
-                                        >
-                                            http://{ip}:{window.location.port}
-                                        </a>
+                                        <IpLinkWithQR key={index} ip={ip} port={window.location.port} />
                                     ))
                                 ) : (
                                     <span className="text-hack-text bg-hack-bg p-2 rounded border border-hack-border">N/A</span>
