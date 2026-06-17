@@ -163,7 +163,8 @@ SYNAPSE/
 ├── index.html              # App entry point
 ├── start.bat               # Windows launcher
 ├── start.sh                # Unix launcher
-├── SYNAPSE Installer V3.bat# Auto-installer with backup support
+├── SYNAPSE_Installer.bat   # Auto-installer with backup support
+├── SYNAPSE_Installer.sh    # Auto-installer for Linux with backup support
 ├── FEATURES.md             # Detailed feature documentation
 ├── User_Manual.md          # End-user guide
 ├── package.json
